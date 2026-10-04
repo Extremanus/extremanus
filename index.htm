@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXTREMANUS | Robótica Biónica de Alto Rendimiento</title>
+    <!-- Cargamos Tailwind CSS para diseño rápido y profesional -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de colores personalizados (Inspirados en tecnología y Extremadura) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a', // Azul noche muy oscuro (estilo biónico)
+                            accent: '#10b981', // Verde esmeralda (guiño a Extremadura y tecnología)
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fuente Inter de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Efecto de fondo oscuro para el Hero (sustituir por foto de la mano) */
+        .hero-bg {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)), url('assets/img/hero-mano.jpg') center/cover;
+        }
+        /* Utilidad extra para forzar máxima calidad en imágenes animadas */
+        .crisp-image {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -ms-transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-slate-800 antialiased">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-extrabold text-white tracking-tighter hover:opacity-80 transition">
+                EXTREMANUS<span class="text-brand-accent">.</span>
+            </a>
+            
+            <!-- Menú Desplegable -->
+            <div class="relative group">
+                <button class="flex items-center space-x-2 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700 text-slate-200 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300">
+                    <span>Explorar Web</span>
+                    <svg class="w-4 h-4 text-brand-accent transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                
+                <!-- Opciones del desplegable -->
+                <div class="absolute top-full right-0 mt-3 w-72 bg-brand-dark border border-slate-700 rounded-2xl shadow-2xl shadow-black/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100 overflow-hidden">
+                    <div class="flex flex-col max-h-[80vh] overflow-y-auto">
+                        <a href="#" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-500 mr-3"></span> Inicio
+                        </a>
+                        <a href="#tecnologia" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> Tecnología
+                        </a>
+                        <a href="#pruebas" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> Demostración en Vivo
+                        </a>
+                        <a href="#logros" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> Palmarés Valencia
+                        </a>
+                        <a href="#viaje" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> El Viaje y Factor Humano
+                        </a>
+                        <a href="#prensa" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> Respaldo y Medios
+                        </a>
+                        <a href="#equipo" class="px-5 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition border-b border-slate-800/50 flex items-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-accent mr-3"></span> El Equipo
+                        </a>
+                        <a href="#futuro" class="px-5 py-4 text-sm font-bold text-brand-dark bg-brand-accent hover:bg-emerald-400 transition flex items-center justify-between">
+                            <span>Únete al Proyecto</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+<!-- HERO SECTION (Diseño Monitor de Laboratorio - Ajustado) -->
+    <section class="bg-brand-dark pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden relative">
+        <!-- Luz de fondo ambiental -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            
+            <!-- Columna de Texto -->
+            <div class="max-w-2xl">
+                <span class="text-brand-accent font-bold tracking-widest text-xs md:text-sm uppercase mb-4 flex items-center">
+                    <span class="w-2 h-2 bg-brand-accent rounded-full animate-pulse mr-2"></span>
+                    Campeones de España - Categoría No Tripulada
+                </span>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                    El Futuro de la Biomecánica se Forja en <br class="hidden md:block"><span class="text-brand-accent">Extremadura.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
+                    Traducimos tu voluntad en acción. Nuestra arquitectura híbrida captura las señales biométricas de la persona para orquestar un sistema mecánico de potencia y velocidad extremas. Porque cuando la máquina reacciona al pensamiento, deja de ser una prótesis y se convierte en ti.
+                </p>
+                
+                <div class="flex">
+                    <a href="#tecnologia" class="bg-brand-accent text-brand-dark font-bold py-3.5 px-8 rounded-full hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">
+                        Ver Arquitectura Híbrida
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna Visual (Marco Laboratorio) -->
+            <div class="relative flex justify-center items-center lg:justify-end group">
+                
+                <!-- Chasis del Monitor -->
+                <div class="relative bg-slate-800/80 backdrop-blur-sm rounded-2xl p-2 md:p-3 border border-slate-700 shadow-[0_0_40px_rgba(16,185,129,0.15)] transform group-hover:scale-[1.02] transition duration-700 w-full max-w-md lg:max-w-lg">
+                    
+                    <!-- Pantalla Interna (Agrupa HUD y Vídeo) -->
+                    <div class="relative flex flex-col rounded-xl overflow-hidden border border-slate-900 bg-[#e5e5e5]">
+                        
+                        <!-- Barra superior de la Interfaz (HUD) - Ahora en flujo normal, sin superponerse -->
+                        <div class="h-10 bg-slate-900/95 flex items-center px-4 justify-between border-b border-slate-700/50 z-20 shrink-0 w-full">
+                            <div class="flex items-center space-x-3">
+                                <!-- Piloto rojo parpadeante -->
+                                <div class="relative flex h-2.5 w-2.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                                </div>
+                                <span class="text-[10px] md:text-xs font-mono text-slate-300 tracking-widest">LAB_CAM_01 // KINEMATICS</span>
+                            </div>
+                            <!-- Indicador de señal -->
+                            <div class="flex space-x-1">
+                                <span class="w-1 h-2 bg-brand-accent/40 rounded-full"></span>
+                                <span class="w-1 h-3 bg-brand-accent/70 rounded-full"></span>
+                                <span class="w-1 h-4 bg-brand-accent rounded-full animate-pulse"></span>
+                            </div>
+                        </div>
+
+                        <!-- Área del Vídeo -->
+                        <div class="relative w-full">
+                            <!-- Retículas de Enfoque (Ajustadas al nuevo contenedor) -->
+                            <div class="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-brand-accent/40 z-20 pointer-events-none"></div>
+                            <div class="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-brand-accent/40 z-20 pointer-events-none"></div>
+                            <div class="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-brand-accent/40 z-20 pointer-events-none"></div>
+                            <div class="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-brand-accent/40 z-20 pointer-events-none"></div>
+
+                            <!-- El Vídeo -->
+                            <video id="hero-mecanismo" autoplay loop muted playsinline class="w-full h-auto relative z-10 block">
+                                <source src="assets/vids/Movimiento-Mano.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script integrado para reducir la velocidad del vídeo al 50% -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var heroVideo = document.getElementById("hero-mecanismo");
+                if(heroVideo) {
+                    heroVideo.playbackRate = 0.5;
+                }
+            });
+        </script>
+    </section>
+
+    <!-- SECCIÓN TECNOLOGÍA -->
+    <section id="tecnologia" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-brand-dark mb-4">Potencia y Precisión Milimétrica</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Nuestra arquitectura híbrida separa la lógica de la fuerza, garantizando un rendimiento sin bloqueos bajo estrés mecánico.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+  <!-- Tarjeta 1 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition group flex flex-col">
+                    <div class="h-12 w-12 bg-brand-accent text-white flex items-center justify-center rounded-xl mb-6 font-bold text-xl shadow-md shadow-emerald-500/20">1</div>
+                    
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Procesamiento Neuromuscular</h3>
+                    
+                    <!-- Diagrama de Flujo Modular y Animado (SVG) -->
+                    <div class="w-full h-32 bg-[#0f172a] rounded-xl mb-5 flex items-center justify-center overflow-hidden relative border border-slate-800 shadow-inner group-hover:border-brand-accent/40 transition duration-500">
+                        <!-- Cuadrícula técnica de fondo -->
+                        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px); background-size: 10px 10px;"></div>
+                        
+                        <svg class="w-full h-full relative z-10 p-2" viewBox="0 0 310 80" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <style>
+                                    /* Animación de los datos (líneas de puntos) */
+                                    @keyframes dashFlow {
+                                        to { stroke-dashoffset: -20; }
+                                    }
+                                    .link-flow {
+                                        stroke: #34d399; stroke-width: 2.5; stroke-dasharray: 4 4;
+                                        animation: dashFlow 0.8s linear infinite;
+                                    }
+                                    
+                                    /* Animación de la onda EMG infinita */
+                                    @keyframes emgScroll {
+                                        0% { transform: translateX(0); }
+                                        100% { transform: translateX(-30px); }
+                                    }
+                                    
+                                    /* Animaciones de la pinza abriendo y cerrando */
+                                    @keyframes gripLeft {
+                                        0%, 100% { transform: rotate(-18deg); }
+                                        50% { transform: rotate(0deg); }
+                                    }
+                                    @keyframes gripRight {
+                                        0%, 100% { transform: rotate(18deg); }
+                                        50% { transform: rotate(0deg); }
+                                    }
+                                </style>
+                                
+                                <!-- Máscara para que la onda no se salga de su ventana -->
+                                <clipPath id="emg-screen">
+                                    <rect x="0" y="0" width="45" height="30" rx="2" />
+                                </clipPath>
+                            </defs>
+
+                            <!-- 1. BLOQUE EMG (Ventana con onda móvil) -->
+                            <g transform="translate(10, 15)">
+                                <rect x="0" y="0" width="45" height="30" rx="3" fill="#020617" stroke="#10b981" stroke-width="1.5" />
+                                <g clip-path="url(#emg-screen)">
+                                    <!-- Onda EMG duplicada para hacer el loop perfecto -->
+                                    <path d="M 0 15 L 10 15 L 15 5 L 25 25 L 30 15 L 40 15 L 45 5 L 55 25 L 60 15 L 70 15 L 75 5 L 85 25 L 90 15" 
+                                          fill="none" stroke="#34d399" stroke-width="1.5" stroke-linejoin="round"
+                                          style="animation: emgScroll 1s linear infinite" />
+                                </g>
+                                <text x="22.5" y="48" fill="#94a3b8" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">EMG</text>
+                            </g>
+
+                            <!-- Conexión 1 -->
+                            <line x1="60" y1="30" x2="85" y2="30" class="link-flow" />
+
+                            <!-- 2. BLOQUE SENSOR -->
+                            <g transform="translate(90, 15)">
+                                <rect x="0" y="0" width="30" height="30" rx="4" fill="none" stroke="#10b981" stroke-width="2.5" />
+                                <circle cx="15" cy="15" r="5" fill="#34d399" />
+                                <circle cx="15" cy="15" r="2" fill="#0f172a" />
+                                <text x="15" y="48" fill="#94a3b8" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">SENSOR</text>
+                            </g>
+
+                            <!-- Conexión 2 -->
+                            <line x1="125" y1="30" x2="155" y2="30" class="link-flow" />
+
+                            <!-- 3. BLOQUE MCU (Microcontrolador) -->
+                            <g transform="translate(160, 15)">
+                                <!-- Pines -->
+                                <path d="M-4 6 h4 M-4 12 h4 M-4 18 h4 M-4 24 h4" stroke="#94a3b8" stroke-width="1.5" />
+                                <path d="M30 6 h4 M30 12 h4 M30 18 h4 M30 24 h4" stroke="#94a3b8" stroke-width="1.5" />
+                                <!-- Chip -->
+                                <rect x="0" y="0" width="30" height="30" rx="3" fill="#10b981" />
+                                <circle cx="6" cy="6" r="2" fill="#020617" opacity="0.5"/>
+                                <text x="15" y="48" fill="#94a3b8" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">MCU</text>
+                            </g>
+
+                            <!-- Conexión 3 -->
+                            <line x1="195" y1="30" x2="225" y2="30" class="link-flow" />
+
+                            <!-- 4. BLOQUE PRÓTESIS (Mano Animada) -->
+                            <g transform="translate(230, 10)">
+                                <!-- Base de la mano -->
+                                <path d="M 5 28 h 20 v 8 a 3 3 0 0 1 -3 3 h -14 a 3 3 0 0 1 -3 -3 v -8 z" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+                                
+                                <!-- Dedo Izquierdo (Abre y cierra) -->
+                                <g style="transform-origin: 10px 28px; animation: gripLeft 1.5s ease-in-out infinite;">
+                                    <path d="M 10 28 V 10 h 5 v 8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>
+                                </g>
+                                
+                                <!-- Dedo Derecho (Abre y cierra) -->
+                                <g style="transform-origin: 20px 28px; animation: gripRight 1.5s ease-in-out infinite;">
+                                    <path d="M 20 28 V 10 h -5 v 8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>
+                                </g>
+
+                                <text x="15" y="53" fill="#94a3b8" font-size="9" font-family="monospace" font-weight="bold" text-anchor="middle">PRÓTESIS</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Captura de bioseñales en tiempo real. Los sensores recogen la actividad eléctrica del músculo y envían los datos brutos a los microcontroladores. Allí se filtran y procesan al instante para accionar la prótesis mecánica, garantizando una respuesta fluida y sin latencia.
+                    </p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition group flex flex-col">
+                    <div class="h-12 w-12 bg-brand-accent text-white flex items-center justify-center rounded-xl mb-6 font-bold text-xl shadow-md shadow-emerald-500/20">2</div>
+                    
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Fuerza Sin Compromisos</h3>
+                    
+                    <!-- Diagrama de Flujo de Energía Animado (SVG) -->
+                    <div class="w-full h-32 bg-[#0f172a] rounded-xl mb-5 flex items-center justify-center overflow-hidden relative border border-slate-800 shadow-inner group-hover:border-brand-accent/40 transition duration-500">
+                        <!-- Cuadrícula técnica de fondo -->
+                        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px); background-size: 10px 10px;"></div>
+                        
+                        <svg class="w-full h-full relative z-10 p-2" viewBox="0 0 310 95" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <style>
+                                    /* Animación de la corriente eléctrica */
+                                    @keyframes energyFlow {
+                                        to { stroke-dashoffset: -20; }
+                                    }
+                                    .energy-flow {
+                                        stroke: #34d399; stroke-width: 2.5; stroke-dasharray: 4 4;
+                                        animation: energyFlow 0.8s linear infinite;
+                                    }
+                                    
+                                    /* Animación de latido del rayo de la batería */
+                                    @keyframes pulseVolt {
+                                        0%, 100% { opacity: 1; }
+                                        50% { opacity: 0.3; }
+                                    }
+
+                                    /* Animación del motor girando */
+                                    @keyframes spinServo {
+                                        from { transform: rotate(0deg); }
+                                        to { transform: rotate(360deg); }
+                                    }
+                                </style>
+                            </defs>
+
+                            <!-- 1. BATERÍA -->
+                            <g transform="translate(10, 32)">
+                                <rect x="0" y="0" width="30" height="20" rx="3" fill="#020617" stroke="#10b981" stroke-width="2"/>
+                                <rect x="30" y="5" width="3" height="10" rx="1" fill="#10b981"/>
+                                <!-- Rayo de energía animado -->
+                                <path d="M 16 3 L 11 11 H 17 L 14 17" fill="none" stroke="#34d399" stroke-width="1.5" style="animation: pulseVolt 1.5s infinite;"/>
+                                <text x="15" y="34" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">BATERÍA</text>
+                            </g>
+
+                            <!-- Conexión 1 -->
+                            <line x1="45" y1="42" x2="70" y2="42" class="energy-flow" />
+
+                            <!-- 2. REGULADOR -->
+                            <g transform="translate(75, 27)">
+                                <rect x="0" y="0" width="30" height="30" rx="4" fill="none" stroke="#10b981" stroke-width="2" />
+                                <path d="M 5 15 L 12 15 L 15 8 L 24 8" fill="none" stroke="#34d399" stroke-width="2" stroke-linejoin="round"/>
+                                <text x="15" y="44" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">REGULADOR</text>
+                            </g>
+
+                            <!-- Conexión 2 -->
+                            <line x1="105" y1="42" x2="130" y2="42" class="energy-flow" />
+
+                            <!-- 3. FILTRO -->
+                            <g transform="translate(135, 27)">
+                                <rect x="0" y="0" width="30" height="30" rx="4" fill="#020617" stroke="#10b981" stroke-width="2" />
+                                <!-- Símbolo de condensador/filtro -->
+                                <line x1="12" y1="8" x2="12" y2="22" stroke="#34d399" stroke-width="2.5"/>
+                                <line x1="18" y1="8" x2="18" y2="22" stroke="#34d399" stroke-width="2.5"/>
+                                <line x1="5" y1="15" x2="12" y2="15" stroke="#34d399" stroke-width="2"/>
+                                <line x1="18" y1="15" x2="25" y2="15" stroke="#34d399" stroke-width="2"/>
+                                <text x="15" y="44" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">FILTRO</text>
+                            </g>
+
+                            <!-- Bifurcación (División de energía) -->
+                            <!-- Hacia MCU (Arriba) -->
+                            <path d="M 165 42 H 185 V 18 H 220" fill="none" class="energy-flow" />
+                            <!-- Hacia Motores (Abajo) -->
+                            <path d="M 165 42 H 185 V 65 H 220" fill="none" class="energy-flow" />
+
+                            <!-- 4a. MCU (Cerebro) -->
+                            <g transform="translate(225, 3)">
+                                <path d="M-4 6 h4 M-4 12 h4 M-4 18 h4 M-4 24 h4" stroke="#94a3b8" stroke-width="1.5" />
+                                <rect x="0" y="0" width="30" height="30" rx="3" fill="#10b981" />
+                                <circle cx="6" cy="6" r="2" fill="#020617" opacity="0.5"/>
+                                <text x="15" y="42" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">MCU</text>
+                            </g>
+
+                            <!-- 4b. MOTORES (Músculos) -->
+                            <g transform="translate(225, 50)">
+                                <rect x="0" y="4" width="30" height="22" rx="3" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+                                <!-- Engranaje del motor animado -->
+                                <circle cx="21" cy="15" r="6" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3 2" style="animation: spinServo 3s linear infinite; transform-origin: 21px 15px;"/>
+                                <circle cx="21" cy="15" r="2" fill="#34d399" />
+                                <line x1="-5" y1="15" x2="0" y2="15" stroke="#94a3b8" stroke-width="2" />
+                                <text x="15" y="40" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">MOTORES</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Texto simplificado y comprensible -->
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Para garantizar que la prótesis nunca pierda fuerza ni se bloquee, hemos diseñado un sistema de alimentación aislada. La energía de la batería se regula y se filtra antes de dividirse en dos caminos independientes: uno para el "cerebro" (microcontrolador) y otro para los "músculos" (motores). Así logramos una potencia extrema y 100% estable.
+                    </p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition group flex flex-col">
+                    <div class="h-12 w-12 bg-brand-accent text-white flex items-center justify-center rounded-xl mb-6 font-bold text-xl shadow-md shadow-emerald-500/20">3</div>
+                    
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Cinemática y Chasis</h3>
+                    
+                    <!-- Diagrama Mecánico Animado (SVG) -->
+                    <div class="w-full h-32 bg-[#0f172a] rounded-xl mb-5 flex items-center justify-center overflow-hidden relative border border-slate-800 shadow-inner group-hover:border-brand-accent/40 transition duration-500">
+                        <!-- Cuadrícula de plano de ingeniería -->
+                        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px); background-size: 10px 10px;"></div>
+                        
+                        <svg class="w-full h-full relative z-10 p-2" viewBox="0 0 310 95" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <style>
+                                    /* Animación de transmisión de fuerza (líneas discontinuas) */
+                                    @keyframes forceFlow {
+                                        to { stroke-dashoffset: -20; }
+                                    }
+                                    .force-line {
+                                        stroke: #34d399; stroke-width: 2.5; stroke-dasharray: 4 4;
+                                        animation: forceFlow 0.8s linear infinite;
+                                    }
+
+                                    /* Animaciones de la mano robótica abriendo y cerrando */
+                                    @keyframes gripLeft {
+                                        0%, 100% { transform: rotate(-18deg); }
+                                        50% { transform: rotate(0deg); }
+                                    }
+                                    @keyframes gripRight {
+                                        0%, 100% { transform: rotate(18deg); }
+                                        50% { transform: rotate(0deg); }
+                                    }
+                                </style>
+                            </defs>
+
+                            <!-- 1. CHASIS (Impresión 3D PETG) -->
+                            <g transform="translate(10, 25)">
+                                <!-- Símbolo de capas de impresión 3D -->
+                                <path d="M 5 20 L 15 25 L 25 20 L 15 15 Z" fill="none" stroke="#10b981" stroke-width="1.5" />
+                                <path d="M 5 15 L 15 20 L 25 15 L 15 10 Z" fill="none" stroke="#10b981" stroke-width="1.5" />
+                                <path d="M 5 10 L 15 15 L 25 10 L 15 5 Z" fill="#1e293b" stroke="#34d399" stroke-width="1.5" />
+                                <text x="15" y="45" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">CHASIS PETG</text>
+                            </g>
+
+                            <!-- Transmisión de fuerza -->
+                            <line x1="45" y1="35" x2="80" y2="35" class="force-line" />
+
+                            <!-- 2. MECANISMO DE 4 BARRAS ANIMADO -->
+                            <g transform="translate(90, 15)">
+                                <!-- Base fija (Tierra) -->
+                                <line x1="15" y1="45" x2="55" y2="45" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                                
+                                <!-- Barras móviles con animación de forma nativa SVG -->
+                                <path stroke="#1e293b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                                    <animate attributeName="d" 
+                                             values="M 15 45 L 5 20 L 45 20 L 55 45; M 15 45 L 25 20 L 65 20 L 55 45; M 15 45 L 5 20 L 45 20 L 55 45" 
+                                             dur="1.5s" repeatCount="indefinite" />
+                                </path>
+                                <path stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                                    <animate attributeName="d" 
+                                             values="M 15 45 L 5 20 L 45 20 L 55 45; M 15 45 L 25 20 L 65 20 L 55 45; M 15 45 L 5 20 L 45 20 L 55 45" 
+                                             dur="1.5s" repeatCount="indefinite" />
+                                </path>
+
+                                <!-- Nodos / Articulaciones (sincronizadas con las barras) -->
+                                <circle cx="15" cy="45" r="3" fill="#10b981" />
+                                <circle cx="55" cy="45" r="3" fill="#10b981" />
+                                
+                                <circle cy="20" r="3" fill="#34d399">
+                                    <animate attributeName="cx" values="5; 25; 5" dur="1.5s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cy="20" r="3" fill="#34d399">
+                                    <animate attributeName="cx" values="45; 65; 45" dur="1.5s" repeatCount="indefinite" />
+                                </circle>
+                                
+                                <text x="35" y="65" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">4-BARRAS</text>
+                            </g>
+
+                            <!-- Transmisión de fuerza final -->
+                            <line x1="170" y1="35" x2="215" y2="35" class="force-line" />
+
+                            <!-- 3. PRÓTESIS (Mano Animada) -->
+                            <g transform="translate(230, 15)">
+                                <!-- Base de la mano -->
+                                <path d="M 5 28 h 20 v 8 a 3 3 0 0 1 -3 3 h -14 a 3 3 0 0 1 -3 -3 v -8 z" fill="#1e293b" stroke="#10b981" stroke-width="2" />
+                                
+                                <!-- Dedo Izquierdo (Abre y cierra) -->
+                                <g style="transform-origin: 10px 28px; animation: gripLeft 1.5s ease-in-out infinite;">
+                                    <path d="M 10 28 V 10 h 5 v 8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>
+                                </g>
+                                
+                                <!-- Dedo Derecho (Abre y cierra) -->
+                                <g style="transform-origin: 20px 28px; animation: gripRight 1.5s ease-in-out infinite;">
+                                    <path d="M 20 28 V 10 h -5 v 8" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>
+                                </g>
+
+                                <text x="15" y="55" fill="#94a3b8" font-size="8.5" font-family="monospace" font-weight="bold" text-anchor="middle">PRÓTESIS</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Texto actualizado destacando el cuatro barras -->
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Estructura ultraligera impresa en PETG. Hemos dejado atrás los tendones tradicionales integrando un <strong>mecanismo de cuatro barras</strong> conectado directamente a los motores. Esta cinemática garantiza una transferencia mecánica perfecta, transformando el giro del motor en un agarre firme, potente y libre de holguras.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- SECCIÓN PRUEBAS DE RENDIMIENTO Y DEMOSTRACIÓN -->
+    <section id="pruebas" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-2 block">Demostración en Escenario Real</span>
+                <h2 class="text-4xl font-extrabold text-brand-dark mb-4">El Prototipo en Acción</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Superando las 14 pruebas de actividades de la vida diaria en Valencia. Sin fallos de telemetría, sin caídas de tensión.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Video Destacado (Ocupa 2 columnas en pantallas grandes) -->
+                <div class="md:col-span-2 rounded-2xl overflow-hidden shadow-md group relative bg-black">
+                    <!-- Renombra tu archivo de vídeo a 'prueba-vasos.mp4' o cambia el nombre aquí -->
+                    <video controls muted class="w-full aspect-video md:h-[400px] object-cover transition crisp-image">
+                        <source src="assets/vids/video-de-la-prueba-de-la-piramide-de-vasos.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div class="absolute top-4 left-4 bg-brand-dark/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full flex items-center">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse mr-2"></span> Prueba de Velocidad y Precisión
+                    </div>
+                </div>
+
+                <!-- Foto Botella -->
+                <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[4/3] md:aspect-auto md:h-[400px]">
+                    <img src="assets/img/Mano-robo-sujetando-botella-(calibración-en-concurso).jpg" alt="Agarre de botella con EMG" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark to-transparent p-6 z-10">
+                        <p class="text-white font-bold text-sm">Calibración EMG y Fuerza de Agarre</p>
+                    </div>
+                </div>
+
+                <!-- Foto Cuchillo / Plastilina -->
+                <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[4/3] md:aspect-video">
+                    <img src="assets/img/Prueba-de-cortar-una-plastilina-con-un-cuchillo-(fue-dificil).jpg" alt="Corte de plastilina" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark to-transparent p-6 z-10">
+                        <p class="text-white font-bold text-sm">Motricidad Fina con Herramientas</p>
+                    </div>
+                </div>
+
+                <!-- Foto Rotulador -->
+                <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[4/3] md:aspect-video">
+                    <img src="assets/img/prueba-de-dibujar-con-un-rotulador.jpg" alt="Dibujo con rotulador" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark to-transparent p-6 z-10">
+                        <p class="text-white font-bold text-sm">Precisión de Trazo Controlado</p>
+                    </div>
+                </div>
+
+                <!-- Foto Pelota -->
+                <div class="rounded-2xl overflow-hidden shadow-md group relative aspect-[4/3] md:aspect-video">
+                    <img src="assets/img/Prueba-de-lanzar-la-pelota.jpg" alt="Lanzamiento de pelota" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark to-transparent p-6 z-10">
+                        <p class="text-white font-bold text-sm">Apertura Rápida Sincronizada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- SECCIÓN PALMARÉS Y LOGROS REIMAGINADA (Con Viaje) -->
+    <section id="logros" class="py-24 bg-white relative overflow-hidden">
+        <!-- Elemento de fondo decorativo -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-[500px] h-[500px] bg-slate-50 rounded-full opacity-50 z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Columna de Texto y Datos -->
+                <div class="order-2 lg:order-1">
+                    <div class="flex flex-wrap items-center gap-3 mb-6">
+                        <span class="bg-brand-dark text-white font-bold text-xs uppercase px-4 py-1.5 rounded-full tracking-wide">Categoría No Tripulada</span>
+                        <span class="bg-brand-accent text-brand-dark font-extrabold text-xs uppercase px-4 py-1.5 rounded-full tracking-wide flex items-center shadow-md shadow-brand-accent/30">
+                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> 
+                            1er Premio
+                        </span>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-brand-dark mb-6 leading-tight">
+                        De Extremadura a lo más alto del podio nacional.
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+                        El 15 de mayo de 2026, el sistema biomimético de EXTREMANUS se puso a prueba en la <strong>II Competición Universitaria de Manos Protésicas</strong> (UPV, Valencia). Nuestro prototipo dominó la clasificación gracias a la velocidad de su arquitectura híbrida y la estabilidad de la potencia.
+                    </p>
+                    
+                    <!-- Tarjetas de Hitos -->
+                    <div class="space-y-5">
+                        <div class="flex items-start bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-100 flex items-center justify-center mr-5 shadow-inner">
+                                <span class="text-2xl font-black text-brand-accent">14</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-dark mb-1">Pruebas Superadas</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Afrontamos 14 retos contrarreloj de agarre y precisión (actividades de la vida diaria), completándolos de forma 100% autónoma.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-100 flex items-center justify-center mr-5 shadow-inner">
+                                <span class="text-2xl font-black text-brand-accent">140</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-dark mb-1">Participantes</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Destacamos en un entorno de máxima exigencia técnica, imponiéndonos ante 10 equipos de 8 universidades de toda España.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Visual: Collage Grid -->
+                <div class="order-1 lg:order-2 relative">
+                    <div class="grid grid-cols-2 gap-5">
+                        <!-- Foto Principal (Diploma) -->
+                        <div class="col-span-2 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform transition hover:-translate-y-2 hover:shadow-brand-accent/20">
+                            <img src="assets/img/Foto-de-Grupo-con-trofeo.jpg" alt="Equipo Extremanus recibiendo el Primer Premio" class="w-full h-[320px] object-cover">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-6 pt-12">
+                                <p class="text-white font-bold text-lg leading-tight">Entrega del Primer Premio</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Foto Secundaria 1 (Photocall Rolup) -->
+                        <div class="rounded-3xl overflow-hidden shadow-lg border-4 border-white group">
+                            <div class="w-full aspect-square md:aspect-[4/3] relative overflow-hidden">
+                                <!-- CORREGIDO: Imagen del photocall en hueco pequeño -->
+                                <img src="assets/img/Foto-de-grupo-Extremanus.jpg" alt="Equipo Extremanus en el photocall del evento" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                            </div>
+                        </div>
+                        
+                        <!-- Foto Secundaria 2 (Grupo Global) -->
+                        <div class="rounded-3xl overflow-hidden shadow-lg border-4 border-white group">
+                            <div class="w-full aspect-square md:aspect-[4/3] relative overflow-hidden">
+                                <img src="assets/img/foto-de-grupo-conjunta-de-Extremanus-con-el-equipo-de-la-universidad-de-malaga.jpg" alt="Todos los equipos de la competición" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 crisp-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- NUEVO BLOQUE: EL VIAJE (Estrategia y Esfuerzo) -->
+            <div id="viaje"class="mt-24 bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-200 flex flex-col md:flex-row group">
+                
+                <!-- Zona de Texto -->
+                <div class="p-10 md:p-14 md:w-5/12 flex flex-col justify-center z-10 bg-white relative">
+                    <div class="inline-block bg-emerald-50 border border-emerald-100 text-brand-accent text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wider w-max">
+                        El Esfuerzo Invisible
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-6">600 Km de Estrategia</h3>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        El camino hacia el primer premio comenzó mucho antes de pisar el pabellón. Fue un viaje por carretera cruzando la península desde Badajoz hasta Valencia.
+                    </p>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Horas de viaje, buena música y charlas interminables donde debatimos cada aspecto técnico y diseñamos la estrategia exacta para resolver las tareas del concurso. Esa conexión humana fue nuestro verdadero motor.
+                    </p>
+                </div>
+                
+                <!-- Zona Visual de la Ruta Sinuosa -->
+                <div class="md:w-7/12 relative bg-slate-50 flex items-center justify-center overflow-hidden border-l border-slate-100 p-6 md:p-10">
+                    
+                    <!-- Contenedor con Aspect Ratio Fijo (2:1) para evitar que el coche se aplaste -->
+                    <div class="relative w-full aspect-[2/1] max-w-2xl">
+                        
+                        <!-- SVG Carretera Sinuosa y Coche Móvil -->
+                        <!-- Al fijar el viewBox a 200x100 y el contenedor a 2:1, logramos proporción perfecta 0 distorsión -->
+                        <svg class="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 200 100">
+                            <defs>
+                                <filter id="sombra-carretera" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="6" stdDeviation="4" flood-opacity="0.12"/>
+                                </filter>
+                                <filter id="sombra-coche" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feDropShadow dx="-2" dy="4" stdDeviation="2" flood-opacity="0.3"/>
+                                </filter>
+                            </defs>
+
+                            <!-- Base de la carretera -->
+                            <path id="ruta-viaje" d="M 30 75 C 70 105, 90 10, 130 50 C 150 70, 160 25, 170 25" fill="none" stroke="#334155" stroke-width="6" filter="url(#sombra-carretera)" stroke-linecap="round" />
+                            
+                            <!-- Línea discontinua blanca del centro -->
+                            <path d="M 30 75 C 70 105, 90 10, 130 50 C 150 70, 160 25, 170 25" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 4" stroke-linecap="round" />
+
+                            <!-- Coche deportivo animado -->
+                            <g filter="url(#sombra-coche)">
+                                <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+                                    <mpath href="#ruta-viaje" />
+                                </animateMotion>
+                                
+                                <!-- Diseño de coche detallado (visto desde arriba) -->
+                                <!-- Ruedas -->
+                                <rect x="-3.5" y="-4" width="3" height="1.5" rx="0.5" fill="#0f172a" />
+                                <rect x="2" y="-4" width="3" height="1.5" rx="0.5" fill="#0f172a" />
+                                <rect x="-3.5" y="2.5" width="3" height="1.5" rx="0.5" fill="#0f172a" />
+                                <rect x="2" y="2.5" width="3" height="1.5" rx="0.5" fill="#0f172a" />
+                                
+                                <!-- Chasis aerodinámico -->
+                                <path d="M -6 -3 L 4 -3 C 6 -3, 7 -2, 7 0 C 7 2, 6 3, 4 3 L -6 3 C -7.5 3, -8 2, -8 0 C -8 -2, -7.5 -3, -6 -3 Z" fill="#10b981" />
+                                
+                                <!-- Cristal panorámico tintado -->
+                                <path d="M -3 -2 L 2 -2 C 3 -2, 4 -1, 4 0 C 4 1, 3 2, 2 2 L -3 2 C -4 2, -4.5 1, -4.5 0 C -4.5 -1, -4 -2, -3 -2 Z" fill="#1e293b" />
+                                
+                                <!-- Faros delanteros -->
+                                <rect x="6" y="-2.2" width="1" height="0.8" rx="0.3" fill="#fef08a" />
+                                <rect x="6" y="1.4" width="1" height="0.8" rx="0.3" fill="#fef08a" />
+                                
+                                <!-- Luces traseras -->
+                                <rect x="-7.8" y="-2.2" width="0.8" height="1" fill="#ef4444" />
+                                <rect x="-7.8" y="1.2" width="0.8" height="1" fill="#ef4444" />
+                            </g>
+                        </svg>
+
+                        <!-- Nodo Badajoz (Alcazaba) -->
+                        <div class="absolute flex flex-col items-center transform -translate-x-1/2 -translate-y-1/2 group z-10" style="top: 75%; left: 15%;">
+                            <div class="relative">
+                                <img src="assets/img/image_3ccbfc.jpg" alt="Alcazaba de Badajoz" class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg object-cover transform group-hover:scale-110 transition duration-500 crisp-image">
+                            </div>
+                            <span class="mt-3 text-brand-dark font-extrabold text-sm bg-white/90 px-4 py-1 rounded-full shadow-sm">Badajoz</span>
+                        </div>
+
+                        <!-- Nodo Valencia (Ciudad de las Artes) -->
+                        <div class="absolute flex flex-col items-center transform -translate-x-1/2 -translate-y-1/2 group z-10" style="top: 25%; left: 85%;">
+                            <div class="relative">
+                                <img src="assets/img/image_3ccba1.jpg" alt="Ciudad de las Artes y las Ciencias" class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg object-cover transform group-hover:scale-110 transition duration-500 crisp-image">
+                            </div>
+                            <span class="mt-3 text-brand-dark font-extrabold text-sm bg-white/90 px-4 py-1 rounded-full shadow-sm">Valencia</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+<!-- NUEVO BLOQUE: EL FACTOR HUMANO (Ristra de Imágenes) -->
+            <div class="mt-24 pt-16 border-t border-slate-100 w-full relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-slate-50 overflow-hidden">
+                
+                <div class="text-center mb-10 pt-12 max-w-3xl mx-auto px-6">
+                    <span class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-3 block">Más allá de la ingeniería</span>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">El Factor Humano</h3>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        Porque detrás de cada línea de código y cada pieza impresa, hay madrugadas, nervios, risas y un grupo de amigos disfrutando del proceso en las calles de Valencia.
+                    </p>
+                </div>
+
+                <style>
+                    @keyframes slideGallery {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-gallery {
+                        animation: slideGallery 35s linear infinite; 
+                        width: max-content;
+                    }
+                    .animate-gallery:hover {
+                        animation-play-state: paused;
+                    }
+                </style>
+
+                <!-- Contenedor del Carrusel -->
+                <div class="relative py-12 flex overflow-hidden">
+                    <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-40 pointer-events-none"></div>
+                    <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-40 pointer-events-none"></div>
+                    
+                    <!-- Pista móvil (Filtros de opacidad y blanco y negro eliminados, proporciones de altura nativa ajustadas) -->
+                    <div class="animate-gallery flex gap-6 md:gap-10 px-6 items-center">
+                        
+                        <!-- ================= GRUPO 1 ================= -->
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer">
+                            <img src="assets/img/valencia-2.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer mt-6">
+                            <img src="assets/img/valencia-3.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer -mt-4">
+                            <img src="assets/img/valencia-4.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer mt-5">
+                            <img src="assets/img/valencia-5.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer">
+                            <img src="assets/img/valencia-6.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        
+                        <!-- ================= GRUPO 2 (Duplicado exacto) ================= -->
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer">
+                            <img src="assets/img/valencia-2.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer mt-6">
+                            <img src="assets/img/valencia-3.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer -mt-4">
+                            <img src="assets/img/valencia-4.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer mt-5">
+                            <img src="assets/img/valencia-5.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+                        <div class="h-48 md:h-64 w-auto flex-shrink-0 rounded-xl overflow-hidden shadow-lg border-[6px] border-white transform rotate-3 hover:rotate-0 hover:scale-105 hover:z-50 transition-all duration-500 cursor-pointer">
+                            <img src="assets/img/valencia-6.jpeg" alt="Equipo en Valencia" class="h-full w-auto max-w-none object-contain crisp-image">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+<!-- BLOQUE DE PRENSA Y RESPALDO INSTITUCIONAL (Integrado en Palmarés) -->
+            <div id="prensa" class="mt-20 pt-16 border-t border-slate-100">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-brand-dark">Con el respaldo institucional de:</h3>
+                </div>
+                <!-- Apoyos (Colegio, Dédalo, UEx) - Versión con Logos y Texto -->
+                <div class="flex flex-wrap justify-center gap-12 md:gap-20 items-start mb-16">
+                    
+                    <!-- Logo y Texto COIIEX -->
+                    <a href="https://www.coiiex.es/" target="_blank" class="flex flex-col items-center text-center opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 transform hover:-translate-y-1 group">
+                        <!-- IMPORTANTE: Sustituye el nombre del archivo por tu logo real -->
+                        <img src="assets/img/logo-coiiex.png" alt="Colegio Oficial de Ingenieros Industriales de Extremadura" class="h-16 md:h-20 object-contain mb-4 crisp-image">
+                        <span class="font-bold text-slate-600 text-sm md:text-base max-w-[220px] group-hover:text-brand-dark transition-colors">Colegio Oficial de Ingenieros Industriales de Extremadura</span>
+                    </a>
+                    
+                    <!-- Logo y Texto DÉDALO -->
+                    <a href="https://opendata.unex.es/investiga/grupos-de-investigacion/TPR010" target="_blank" class="flex flex-col items-center text-center opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 transform hover:-translate-y-1 group">
+                        <!-- IMPORTANTE: Sustituye el nombre del archivo por tu logo real -->
+                        <img src="assets/img/logo-dedalo.png" alt="Grupo de Investigación DÉDALO" class="h-16 md:h-20 object-contain mb-4 crisp-image">
+                        <span class="font-bold text-slate-600 text-sm md:text-base max-w-[220px] group-hover:text-brand-dark transition-colors">Grupo de Investigación DÉDALO</span>
+                    </a>
+                    
+                    <!-- Logo y Texto UEx -->
+                    <a href="https://www.unex.es/" target="_blank" class="flex flex-col items-center text-center opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 transform hover:-translate-y-1 group">
+                        <!-- IMPORTANTE: Sustituye el nombre del archivo por tu logo real -->
+                        <img src="assets/img/logo-uex.JPG" alt="Universidad de Extremadura" class="h-16 md:h-20 object-contain mb-4 crisp-image">
+                        <span class="font-bold text-slate-600 text-sm md:text-base max-w-[220px] group-hover:text-brand-dark transition-colors">Universidad de Extremadura</span>
+                    </a>
+
+                </div>
+
+                <!-- Sala de Prensa (Clipping) -->
+                <div class="bg-slate-50 rounded-2xl p-10 border border-slate-200">
+                    <div class="flex items-center mb-8">
+                        <svg class="w-8 h-8 text-brand-accent mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                        <h3 class="text-2xl font-bold text-brand-dark">EXTREMANUS en los Medios</h3>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Noticia 1 (Gabinete UEx) -->
+                        <a href="https://comunicacion.unex.es/2026/05/19/el-equipo-extremanus-de-la-uex-gana-el-primer-premio-en-la-ii-competicion-universitaria-de-manos-protesicas/" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">19 de mayo, 2026</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">Gabinete de Comunicación UEx</h4>
+                                <p class="text-sm text-slate-600 mb-2">El equipo Extremanus de la UEx gana el primer premio en la II Competición Universitaria...</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Noticia 2 (Región Digital) -->
+                        <a href="https://www.regiondigital.com/noticias/juventud/429952-equipo-extremanus-de-uex-1er-premio-en-ii-competicion-universitaria-de-manos-protesicas.html" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">19 de mayo, 2026</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">Región Digital</h4>
+                                <p class="text-sm text-slate-600 mb-2">Equipo Extremanus de la UEx se alza con el 1er premio en diseño de prótesis biónicas...</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Noticia 3 (El Periódico Extremadura) -->
+                        <a href="https://www.elperiodicoextremadura.com/extremadura/2026/05/19/equipo-uex-alza-primer-premio-130383915.html" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">19 de mayo, 2026</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">El Periódico de Extremadura</h4>
+                                <p class="text-sm text-slate-600 mb-2">Un equipo de la Universidad de Extremadura se alza con el máximo galardón nacional...</p>
+                            </div>
+                        </a>
+
+                        <!-- Noticia 4 (RTVE) -->
+                        <a href="https://www.rtve.es/noticias/20260617/equipo-extremanus-se-alza-con-primer-premio-ii-competicion-universitaria-manos-protesicas/17119500.shtml" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">17 de junio, 2026</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">RTVE</h4>
+                                <p class="text-sm text-slate-600 mb-2">El equipo Extremanus se alza con el primer premio en la II Competición Universitaria de Manos Protésicas...</p>
+                            </div>
+                        </a>
+
+                        <!-- Noticia 5 (elDiario.es) -->
+                        <a href="https://www.eldiario.es/extremadura/tecnologia/jovenes-uex-desarrollan-mano-protesica-ganadora-certamen-universitario-nacional_1_13314112.html" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">Tecnología</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">elDiario.es Extremadura</h4>
+                                <p class="text-sm text-slate-600 mb-2">Jóvenes de la UEx desarrollan la mano protésica ganadora del certamen universitario nacional...</p>
+                            </div>
+                        </a>
+
+                        <!-- Noticia 6 (Demócrata) -->
+                        <a href="https://www.democrata.es/extremadura/naharro-recibe-en-la-asamblea-al-equipo-extremanus-vencedor-de-la-ii-competicion-universitaria-de-manos-protesicas/" target="_blank" class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-100 transition group flex flex-col justify-between">
+                            <div>
+                                <p class="text-xs text-brand-accent font-bold mb-2 uppercase">Institucional</p>
+                                <h4 class="font-bold text-brand-dark mb-3 group-hover:text-brand-accent transition">Demócrata</h4>
+                                <p class="text-sm text-slate-600 mb-2">Naharro recibe en la Asamblea al equipo Extremanus, vencedor de la competición de manos protésicas...</p>
+                            </div>
+                        </a>
+
+                        <!-- Noticia 7 (Asamblea de Extremadura - Vídeo) -->
+                        <a href="https://www.facebook.com/100018745864360/videos/-el-presidente-de-la-asamblea-de-extremadura-manuel-naharro-ha-recibido-al-equip/2130260625041347/" target="_blank" class="block p-6 bg-slate-800 rounded-xl shadow-sm hover:shadow-md border border-slate-700 transition group flex flex-col justify-between lg:col-span-3">
+                            <div class="flex items-start md:items-center flex-col md:flex-row gap-4">
+                                <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6 text-brand-dark ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-brand-accent font-bold mb-1 uppercase">Recepción Oficial (Vídeo)</p>
+                                    <h4 class="font-bold text-white text-lg group-hover:text-brand-accent transition">Asamblea de Extremadura</h4>
+                                    <p class="text-sm text-slate-400 mt-1">El presidente de la Asamblea de Extremadura, Manuel Naharro, recibe al equipo tras su victoria en Valencia.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+
+    </section>
+
+<!-- SECCIÓN EL EQUIPO -->
+    <section id="equipo" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-brand-dark mb-4">Ingeniería con Sello Extremeño</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Conoce a los cuatro ingenieros industriales detrás del sistema robótico que conquistó la máxima categoría no tripulada en Valencia.</p>
+            </div>
+            
+            <!-- Aumentado ligeramente el tamaño de las tarjetas y el hueco de la foto para mejor resolución -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Tarjeta Teresa -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-40 h-40 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden border-4 border-slate-50">
+                        <img src="assets/img/teresa.jpg" alt="Teresa" class="w-full h-full object-cover crisp-image">
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-1">Teresa</h3>
+                    <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider block mb-4">Ingeniería Mecánica</span>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Lidera el diseño del chasis anatómico en PETG, garantizando la resistencia de la estructura bajo estrés y el acople del soporte al piloto.</p>
+                    <a href="https://www.linkedin.com/in/tgr1/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9ewGovkFR7SrJxQFAuYsQQ%3D%3D" target="_blank" class="inline-block text-slate-300 hover:text-blue-600 transition" title="Perfil de LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Tarjeta Violeta -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-40 h-40 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden border-4 border-slate-50">
+                        <img src="assets/img/violeta.jpg" alt="Violeta" class="w-full h-full object-cover crisp-image">
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-1">Violeta</h3>
+                    <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider block mb-4">Biomecánica y Actuadores</span>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Especialista en la cinemática del mecanismo de cuatro barras y la integración mecánica de los actuadores Feetech de alto rendimiento.</p>
+                    <a href="https://www.linkedin.com/in/vtrujillom/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BpMmoZ7SxRrqgOi80FQHKBQ%3D%3D" target="_blank" class="inline-block text-slate-300 hover:text-blue-600 transition" title="Perfil de LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Tarjeta Manuel -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-40 h-40 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden border-4 border-slate-50">
+                        <img src="assets/img/Manuel-(2).jpeg" alt="Manuel" class="w-full h-full object-cover crisp-image">
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-1">Manuel</h3>
+                    <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider block mb-4">Electrónica de Potencia</span>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Responsable de la red de energía. Diseñó el sistema de alimentación aislada y el filtrado por condensadores para eliminar ruidos eléctricos.</p>
+                    <a href="https://www.linkedin.com/in/manuel-medina-parra-7a068a358/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BVVeqegBZT1OYJG6h9bYzGg%3D%3D" target="_blank" class="inline-block text-slate-300 hover:text-blue-600 transition" title="Perfil de LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Tarjeta Juanluis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="w-40 h-40 mx-auto bg-slate-200 rounded-full mb-6 overflow-hidden border-4 border-slate-50">
+                        <img src="assets/img/Juan-Luis.png" alt="Juanluis" class="w-full h-full object-cover crisp-image">
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-1">Juan Luis</h3>
+                    <span class="text-brand-accent font-semibold text-sm uppercase tracking-wider block mb-4">Control e Integración</span>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Desarrollador del firmware híbrido Pi-ESP32. Lidera la adquisición de señales EMG de alta velocidad y la toma de decisiones.</p>
+                    <a href="https://www.linkedin.com/in/juan-luis-mart%C3%ADnez-carande-cu%C3%A9-8856951b1/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BwQ%2BsA%2FwtSOmaoNxC0FatwQ%3D%3D" target="_blank" class="inline-block text-slate-300 hover:text-blue-600 transition" title="Perfil de LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CALL TO ACTION (ROAD TO BARCELONA) -->
+    <section id="futuro" class="py-24 bg-brand-dark border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-3 block">El Siguiente Nivel</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6">De la precisión autónoma al <span class="text-brand-accent">factor humano.</span></h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Tras dominar la categoría no tripulada en Valencia, EXTREMANUS da el salto más ambicioso: adaptar nuestra tecnología para la competición con piloto oficial en Barcelona. Nuestro objetivo es claro: volver a ganar y demostrar que la ingeniería extremeña domina la categoría pilotada.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Buscamos Piloto -->
+                <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+                    
+                    <div class="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Búsqueda de Piloto Oficial</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        El hardware está listo. Ahora necesitamos el factor humano. Buscamos a una persona extremeña con amputación transradial (que conserve el codo), con ganas de superación, para que se convierta en el rostro y el piloto de nuestro brazo robótico de competición.
+                    </p>
+                    <div class="flex items-center text-sm font-bold text-brand-accent">
+                        <span>En negociaciones activas</span>
+                        <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse ml-2"></span>
+                    </div>
+                </div>
+
+                <!-- Financiación y Patrocinio -->
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-brand-accent/20 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    
+                    <div class="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center mb-6 border border-brand-accent/30">
+                        <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Únete al Proyecto EXTREMANUS</h3>
+                    <p class="text-slate-400 mb-8 leading-relaxed relative z-10">
+                        Buscamos alianzas con la administración pública y el sector privado. Tu respaldo financiará la I+D necesaria para adaptar ergonómicamente el prototipo, optimizar los algoritmos de filtrado EMG y cubrir la logística hacia la victoria en Barcelona.
+                    </p>
+                    
+                    <!-- Botonera de Contacto Directo -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
+                        <!-- Teléfono 1-->
+                        <a href="tel:+34636213871" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            636 21 38 71
+                        </a>
+                        <!-- Teléfono 2 -->
+                        <a href="tel:+34648628864" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            648 62 88 64
+                        </a>
+                        <!-- Teléfono 3 -->
+                        <a href="tel:+34684200976" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            684 20 09 76
+                        </a>
+                        <!-- Teléfono 4 -->
+                        <a href="tel:+34924286989" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            924 28 69 89
+                        </a>
+                        <!-- Teléfono 5 -->
+                        <a href="tel:+34674959137" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            674 95 91 37
+                        </a>
+                        <!-- Email -->
+                        <a href="mailto:extremanus@gmail.com" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors border border-slate-600 text-sm font-medium">
+                            <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            Email
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/extremanus-project-183946403/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BXY3G6TtgQWKN4joZGZEcqQ%3D%3D" target="_blank" class="flex items-center justify-center w-10 h-10 bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-[#0077b5] rounded-lg transition-colors border border-[#0077b5]/30">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/extremanus/" target="_blank" class="flex items-center justify-center w-10 h-10 bg-pink-500/10 hover:bg-pink-500/20 text-pink-500 rounded-lg transition-colors border border-pink-500/30">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
